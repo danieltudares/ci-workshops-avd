@@ -11,7 +11,7 @@ l3spine:
   defaults:
     platform: cEOS
     spanning_tree_mode: mstp
-    spanning_tree_priority: 4096
+    # spanning_tree_priority: 4096
     loopback_ipv4_pool: 10.1.252.0/24
     mlag_peer_ipv4_pool: 10.1.253.0/31
     mlag_peer_l3_ipv4_pool: 10.1.253.2/31
@@ -33,7 +33,7 @@ l2leaf:
     platform: cEOS
     mlag_peer_ipv4_pool: 10.1.253.0/31
     spanning_tree_mode: mstp
-    spanning_tree_priority: 16384
+    # spanning_tree_priority: 16384
     uplink_switches: [ s1-spine1, s1-spine2 ]
     uplink_interfaces: [ Ethernet2, Ethernet3 ]
     mlag_interfaces: [ Ethernet1, Ethernet6 ]
@@ -68,3 +68,30 @@ l2leaf:
 ##################################################################
 
 underlay_routing_protocol: OSPF
+
+##################################################################
+# WAN/Core Edge Links
+##################################################################
+
+core_interfaces:
+  p2p_links:
+
+    - ip: [ 10.0.0.29/31, 10.0.0.28/31 ]
+      nodes: [ s1-spine1, WANCORE ]
+      interfaces: [ Ethernet7, Ethernet2 ]
+      include_in_underlay_protocol: true
+
+    - ip: [ 10.0.0.33/31, 10.0.0.32/31 ]
+      nodes: [ s1-spine1, WANCORE ]
+      interfaces: [ Ethernet8, Ethernet2 ]
+      include_in_underlay_protocol: true
+
+    - ip: [ 10.0.0.31/31, 10.0.0.30/31 ]
+      nodes: [ s1-spine2, WANCORE ]
+      interfaces: [ Ethernet7, Ethernet2 ]
+      include_in_underlay_protocol: true
+
+    - ip: [ 10.0.0.35/31, 10.0.0.34/31 ]
+      nodes: [ s1-spine2, WANCORE ]
+      interfaces: [ Ethernet8, Ethernet2 ]
+      include_in_underlay_protocol: true
