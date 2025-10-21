@@ -3,7 +3,6 @@
 ## Table of Contents
 
 - [Management](#management)
-  - [Banner](#banner)
   - [Management Interfaces](#management-interfaces)
   - [DNS Domain](#dns-domain)
   - [IP Name Servers](#ip-name-servers)
@@ -16,7 +15,6 @@
   - [AAA Authorization](#aaa-authorization)
 - [Monitoring](#monitoring)
   - [TerminAttr Daemon](#terminattr-daemon)
-  - [Logging](#logging)
 - [MLAG](#mlag)
   - [MLAG Summary](#mlag-summary)
   - [MLAG Device Configuration](#mlag-device-configuration)
@@ -48,15 +46,6 @@
   - [VRF Instances Device Configuration](#vrf-instances-device-configuration)
 
 ## Management
-
-### Banner
-
-#### MOTD Banner
-
-```text
-You shall not pass. Unless you are authorized. Then you shall pass.
-EOF
-```
 
 ### Management Interfaces
 
@@ -188,7 +177,6 @@ management api http-commands
 ```eos
 !
 username arista privilege 15 role network-admin secret sha512 <removed>
-username arista ssh-key ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDTtBz5slOrxd3luEue6SMPGC170+R0n00NOONp+w9TZ5HAgNONfUuQmgYK51KB67wgqzFQbrTQd26PT4vmR1gwqPlt4rUVkzq1qLJbU/Z30SL1yNFoTyh4mZgxu1SFdDykA1IATmy8/B/fSNorTHt4Alo7VTlHHGH1dIlZs9qI8jKsV3WglRP0h6TAMicZcRcMwnogfNcZwX9CP4PDdG5wlYur5LcYWtTuASXwHyHwr4G9I2NzGLj1h9uP/dx9Ep+SnKWuVHF7lgH6GmNjZgMjEZ0il1bnc5ZNPWKMBflT+o55ACw7I1K+kVC12uK9VAt2t59WdGwuPKF1Y3SNmcT1 arista@atd-workshop-pr-test-1-91a6d08c-eos
 ```
 
 ### Enable Password
@@ -231,31 +219,6 @@ daemon TerminAttr
    no shutdown
 ```
 
-### Logging
-
-#### Logging Servers and Features Summary
-
-| Type | Level |
-| -----| ----- |
-
-| VRF | Source Interface |
-| --- | ---------------- |
-| default | Management0 |
-
-| VRF | Hosts | Ports | Protocol | SSL-profile |
-| --- | ----- | ----- | -------- | ----------- |
-| default | 10.200.0.108 | Default | UDP | - |
-| default | 10.200.1.108 | Default | UDP | - |
-
-#### Logging Servers and Features Device Configuration
-
-```eos
-!
-logging host 10.200.0.108
-logging host 10.200.1.108
-logging source-interface Management0
-```
-
 ## MLAG
 
 ### MLAG Summary
@@ -289,7 +252,7 @@ STP mode: **mstp**
 
 | Instance(s) | Priority |
 | -------- | -------- |
-| 0 | 32768 |
+| 0 | 4096 |
 
 #### Global Spanning-Tree Settings
 
@@ -301,7 +264,7 @@ STP mode: **mstp**
 !
 spanning-tree mode mstp
 no spanning-tree vlan-id 4093-4094
-spanning-tree mst 0 priority 32768
+spanning-tree mst 0 priority 4096
 ```
 
 ## Internal VLAN Allocation Policy
