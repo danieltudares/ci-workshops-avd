@@ -9,6 +9,7 @@ jobs:
   deploy-prod:
     env:
       LABPASSPHRASE: ${{ secrets.LABPASSPHRASE }}
+      CV_TOKEN: ${{ secrets.CV_TOKEN }}
     timeout-minutes: 15
     runs-on: ubuntu-latest
     steps:
