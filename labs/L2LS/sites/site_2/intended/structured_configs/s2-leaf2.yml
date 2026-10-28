@@ -3,6 +3,12 @@ aaa_authorization:
     default: local
 aaa_root:
   disabled: true
+banners:
+  motd: 'You shall not pass. Unless you are authorized. Then you shall pass.
+
+    EOF
+
+    '
 config_end: true
 daemon_terminattr:
   cvaddrs:
@@ -88,6 +94,15 @@ local_users:
   sha512_password: $6$c932a9656f260e3a$60eC9y4vlL4kRhHYLduo8uPt7FL..nHqjoPapr15Cn3xUeefLfZkd5/PJtUXLa2xxkvqOuEkXg18ayWT7hTnb.
   ssh_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDCpdTIbGgclzryd8SzOukHKUlHeq0bbqo/qjUvoaOcEfwZ/jWCYQ9Fwz2DYYuI6p7jKjvtuS59no+dwUnVp0D27+KgulbKw9otqltvUA1+IJ7S6pbUrl8fcUHUnn8IqzR75baaYNaQiDa/U7+JXCHd6vTBKv9YgN8nQxuw7Xec+qtasoX0YtqKRzdZh0dEQ3dCRQT+E9lmLWUAxIZsqKwrdNF9ZHTg8aXUMyKBoWhQXgdjaT+LS7SKe/XOLoIpOR5Kx4S9VcAaEwJLI5NdoZzm5nwJnp81IwFtKupu0F8nt8YssF+TtJ+tp80NNsFYJgPjEjWTSqNc//pFnPhu2hs7
     arista@ottawa-atd-october26-22-84708aa4-eos
+logging:
+  vrfs:
+  - name: default
+    source_interface: Management0
+    hosts:
+    - name: 10.200.0.108
+      protocol: udp
+    - name: 10.200.1.108
+      protocol: udp
 management_api_http:
   enable_https: true
   enable_vrfs:
